@@ -18,4 +18,5 @@ CONFIG = {
     'data_dir': './data',
     'output_dir': '../outputs',
     'num_workers': 4,
+    'early_stop_patience': 30,
 }

@@ -100,6 +100,8 @@ def main():
     train_losses, val_accs = [], []
     best_val_acc = 0.0
     best_epoch = 0
+    early_stop_patience = cfg.get('early_stop_patience', 30)
+    epochs_no_improve = 0
 
     for epoch in range(1, cfg['pretrain_epochs'] + 1):
         train_loss = train_epoch(model, train_loader, criterion, optimizer, device)
@@ -115,6 +117,7 @@ def main():
         if val_acc > best_val_acc:
             best_val_acc = val_acc
             best_epoch = epoch
+            epochs_no_improve = 0
             checkpoint = {
                 'backbone_state_dict': model.backbone.state_dict(),
                 'epoch': epoch,
@@ -136,6 +139,12 @@ def main():
                 },
             }
             torch.save(checkpoint, os.path.join(cfg['output_dir'], 'backbone_pretrained.pt'))
+        else:
+            epochs_no_improve += 1
+            if epochs_no_improve >= early_stop_patience:
+                print(f'\nEarly stopping at epoch {epoch} '
+                      f'(no improvement for {early_stop_patience} epochs)')
+                break
 
     print(f'\nBest val accuracy: {best_val_acc*100:.2f}% at epoch {best_epoch}')
     save_curves(train_losses, val_accs, cfg['output_dir'])

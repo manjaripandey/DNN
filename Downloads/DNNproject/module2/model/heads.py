@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 
 
@@ -35,3 +36,26 @@ class MLPHead(nn.Module):
 
     def forward(self, z):
         return self.softmax(self.net(z))
+
+
+class TemperatureHead(nn.Module):
+    """Head Variant C: linear layer with learned temperature scaling.
+
+    Temperature T > 1 softens the distribution; T < 1 sharpens it.
+    T is a learnable scalar initialized to 1 (identity at start).
+    Parameters added: 512 × 10 + 10 + 1 = 5,131
+    """
+
+    def __init__(self, feature_dim=512, num_classes=10, init_temperature=1.0):
+        super().__init__()
+        self.fc = nn.Linear(feature_dim, num_classes)
+        self.log_temperature = nn.Parameter(torch.tensor([init_temperature]).log())
+        self.softmax = nn.Softmax(dim=1)
+
+    @property
+    def temperature(self):
+        return self.log_temperature.exp()
+
+    def forward(self, z):
+        logits = self.fc(z) / self.temperature
+        return self.softmax(logits)
