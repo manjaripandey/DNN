@@ -1,0 +1,29 @@
+{
+    "architecture": "resnet18_cifar",
+    "stem": "3x3_conv_stride1_no_pool",
+    "feature_dim": 512,
+    "num_classes_pretrain": 10,
+    "pretrain_dataset": "cifar10_train",
+    "pretrain_epochs": 200,
+    "early_stop_patience": 30,
+    "pretrain_optimizer": "SGD_nesterov",
+    "pretrain_lr": 0.1,
+    "pretrain_momentum": 0.9,
+    "pretrain_weight_decay": 5e-4,
+    "pretrain_batch_size": 128,
+    "lr_schedule": "cosine",
+    "normalization_mean": [0.4914, 0.4822, 0.4465],
+    "normalization_std": [0.2023, 0.1994, 0.2010],
+    "random_seed": 42,
+    "prediction_heads": {
+        "A": "LinearHead — Linear(512→10) + Softmax",
+        "B": "MLPHead — Linear(512→256) + BN + ReLU + Dropout(0.3) + Linear(256→10) + Softmax",
+        "C": "TemperatureHead — Linear(512→10) / T + Softmax, T learnable"
+    },
+    "parameter_counts": {
+        "backbone": 11168832,
+        "head_A": 5130,
+        "head_B": 134410,
+        "head_C": 5131
+    }
+}
