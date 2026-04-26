@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Data & large files
+data/
+DNN/
+*.pt
+*.pth
+
+# Outputs (keep PNGs if you want, remove .pt)
+outputs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
