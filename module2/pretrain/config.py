@@ -17,6 +17,6 @@ CONFIG = {
     'lr_schedule': 'cosine',     # 'cosine' or 'step'
     'data_dir': './data',
     'output_dir': '../outputs',
-    'num_workers': 4,
+    'num_workers': 0,
     'early_stop_patience': 30,
 }
