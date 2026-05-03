@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ### 1. Pretrain on CIFAR-10 (hard labels)
 ```bash
-python train_pretrain.py --epochs 300 --lr 0.1 --seed 42
+python train_pretrain.py --epochs 200 --lr 0.1 --seed 42
 ```
 
 ### 2. Fine-tune on CIFAR-10H (soft labels)
