@@ -1,0 +1,21 @@
+# Module 4 — additional requirements
+# (beyond module3/requirements.txt)
+#
+# Module 3 already provides:
+#   torch, torchvision, numpy, scipy, matplotlib
+#
+# Module 4 adds nothing new at runtime.
+# The packages below are pinned for reproducibility in case
+# module3/requirements.txt is not installed first.
+
+# No new pip packages required.
+# All functionality (Grad-CAM via hooks, markdown generation,
+# figure rendering) uses only the stdlib + packages already
+# present from Modules 1-3.
+
+# ── optional: for viewing the markdown report ──────────────────────────────
+# pip install grip          # render markdown in browser (github style)
+# pip install markdown      # if you want to convert report to HTML
+
+# ── dev / notebook viewing ─────────────────────────────────────────────────
+# pip install jupyterlab    # if you want to view figures interactively

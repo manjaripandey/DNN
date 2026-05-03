@@ -6,3 +6,6 @@ __pycache__/
 outputs/
 data/
 .DS_Store
+__pycache__/
+*.pyc
+*.pyo
