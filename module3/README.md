@@ -32,7 +32,7 @@ module3/
 ├── metrics.py         # All 7 evaluation metrics
 ├── evaluate.py        # Run inference + compute metrics + build table
 ├── visualize.py       # Generate all required plots
-├── run_all.py         # Master orchestration script
+├── main.py            # Master orchestration script
 └── outputs/           # All results saved here
     ├── checkpoint_*.pt
     ├── results_table.txt
